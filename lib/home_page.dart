@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rehome/featured_pets.dart'; 
-import 'package:rehome/models/category_model.dart'; 
+import 'package:rehome/custom_drawer.dart';
+import 'package:rehome/featured_pets.dart';
+import 'package:rehome/models/category_model.dart';
 import 'package:rehome/models/pet_model.dart';
-import 'package:rehome/pet_details_page.dart'; 
+import 'package:rehome/pet_details_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,6 +13,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   List<CategoryModel> categories = [];
   List<PetModel> pets = [];
   List<bool> likedPets = [];
@@ -36,6 +39,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: const CustomDrawer(),
       body: Container(
         color: const Color(0xFFF4F4F4),
         child: Padding(
@@ -48,14 +53,21 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Row(
+                    Row(
                       children: [
-                        CircleAvatar(
-                          radius: 20,
-                          backgroundImage: AssetImage('lib/assets/avatar.jpg'),
+                        GestureDetector(
+                          onTap: () {
+                            // Open the drawer when the avatar is tapped
+                            _scaffoldKey.currentState?.openDrawer();
+                          },
+                          child: const CircleAvatar(
+                            radius: 20,
+                            backgroundImage:
+                                AssetImage('lib/assets/avatar.jpg'),
+                          ),
                         ),
-                        SizedBox(width: 8),
-                        Text(
+                        const SizedBox(width: 8),
+                        const Text(
                           'Username',
                           style: TextStyle(
                             fontSize: 18,
@@ -116,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const FeaturedPets(), 
+                const FeaturedPets(),
                 const SizedBox(height: 20),
                 categoriesHeading(),
                 const SizedBox(height: 5),
@@ -132,16 +144,16 @@ class _HomePageState extends State<HomePage> {
 
   Padding categoriesHeading() {
     return const Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Text(
-                  'Categories',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 24,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              );
+      padding: EdgeInsets.only(left: 10),
+      child: Text(
+        'Categories',
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 24,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    );
   }
 
   Padding petGrid() {
@@ -149,7 +161,8 @@ class _HomePageState extends State<HomePage> {
       padding: const EdgeInsets.all(10.0),
       child: GridView.builder(
         shrinkWrap: true, // Ensures the grid doesn't take up extra space
-        physics: const NeverScrollableScrollPhysics(), // Prevents scrolling of the grid (parent ScrollView handles scrolling)
+        physics:
+            const NeverScrollableScrollPhysics(), // Prevents scrolling of the grid (parent ScrollView handles scrolling)
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, // 2 columns
           crossAxisSpacing: 15, // Space between columns
@@ -190,7 +203,9 @@ class _HomePageState extends State<HomePage> {
                         });
                       },
                       child: Icon(
-                        likedPets[index] ? Icons.favorite : Icons.favorite_border,
+                        likedPets[index]
+                            ? Icons.favorite
+                            : Icons.favorite_border,
                         color: Colors.white,
                         size: 24,
                       ),
@@ -216,7 +231,7 @@ class _HomePageState extends State<HomePage> {
                     child: Row(
                       children: [
                         const Icon(
-                          Icons.location_on_outlined, 
+                          Icons.location_on_outlined,
                           color: Colors.white,
                           size: 16,
                         ),
@@ -238,37 +253,36 @@ class _HomePageState extends State<HomePage> {
         },
       ),
     );
-}
-
+  }
 
   SizedBox categoriesList() {
     return SizedBox(
-                height: 60,
-                child: ListView.separated(
-                  itemCount: categories.length,
-                  scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.only(left: 10, right: 20),
-                  separatorBuilder: (context, index) => const SizedBox(width: 20),
-                  itemBuilder: (context, index) {
-                    return Container(
-                      width: 60,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: categories[index].color.withOpacity(0.3),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.asset(
-                            categories[index].iconPath,
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                      ),
-                    );
-                  },
+      height: 60,
+      child: ListView.separated(
+        itemCount: categories.length,
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.only(left: 10, right: 20),
+        separatorBuilder: (context, index) => const SizedBox(width: 20),
+        itemBuilder: (context, index) {
+          return Container(
+            width: 60,
+            height: 60,
+            decoration: BoxDecoration(
+              color: categories[index].color.withOpacity(0.3),
+              shape: BoxShape.circle,
+            ),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset(
+                  categories[index].iconPath,
+                  fit: BoxFit.contain,
                 ),
-              );
+              ),
+            ),
+          );
+        },
+      ),
+    );
   }
 }
