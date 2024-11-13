@@ -1,95 +1,260 @@
 import 'package:flutter/material.dart';
-import 'package:rehome/featured_pets.dart';
+import 'package:rehome/featured_pets.dart'; // Assuming FeaturedPets is a custom widget
+import 'package:rehome/models/category_model.dart'; // Assuming CategoryModel is a model for categories
+import 'package:rehome/models/pet_model.dart'; // Assuming PetModel is a model for pets
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<CategoryModel> categories = [];
+  List<PetModel> pets = [];
+  List<bool> likedPets = [];
+
+  // Initialize categories and pets
+  void _getCategories() {
+    categories = CategoryModel.getCategories();
+  }
+
+  void _getPets() {
+    pets = PetModel.getPets();
+    likedPets = List.generate(pets.length, (index) => false);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getCategories();
+    _getPets();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      color: const Color(0xFFF4F4F4),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 35),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Container(
+        color: const Color(0xFFF4F4F4),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Row(
+                const SizedBox(height: 35),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CircleAvatar(
-                      radius: 20,
-                      backgroundImage: AssetImage('lib/assets/avatar.jpg'),
+                    const Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 20,
+                          backgroundImage: AssetImage('lib/assets/avatar.jpg'),
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                          'Username',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(width: 8),
-                    Text(
-                      'Username',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
+                    IconButton(
+                      icon: const Icon(
+                        Icons.notifications_outlined,
                         color: Colors.black,
                       ),
+                      onPressed: () {},
                     ),
                   ],
                 ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.notifications_outlined,
-                    color: Colors.black,
+                const SizedBox(height: 20),
+                const Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Search Friend",
+                    style: TextStyle(
+                      fontSize: 30.0,
+                    ),
                   ),
-                  onPressed: () {},
                 ),
+                Container(
+                  height: 50.0,
+                  width: 373.0,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFD9D8D8),
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 10.0),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.search,
+                          color: Colors.black,
+                          size: 40.0,
+                        ),
+                        Text(
+                          "Search",
+                          style: TextStyle(fontSize: 20.0),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  "Featured Pets",
+                  style: TextStyle(
+                    fontSize: 30.0,
+                  ),
+                ),
+                const FeaturedPets(), 
+                const SizedBox(height: 20),
+                categoriesHeading(),
+                const SizedBox(height: 5),
+                categoriesList(),
+                petGrid(),
               ],
             ),
-            const SizedBox(height: 20), // Spacing between header and content
-            const Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                "Search Friend",
-                style: TextStyle(
-                  fontSize: 30.0,
-                ),
-              ), // Add more widgets here if needed
-            ),
-            Container(
-              height: 50.0,
-              width: 373.0,
-              decoration: BoxDecoration(
-                color: const Color(0xFFD9D8D8),
-                borderRadius: BorderRadius.circular(
-                    25.0), // Set your desired border radius here
-              ),
-              child: const Padding(
-                padding: EdgeInsets.only(left: 10.0),
-                child: const Row(
-                  children: [
-                    Icon(
-                      Icons.search,
-                      color: Colors.black,
-                      size: 40.0,
-                    ),
-                    Text(
-                      "Search",
-                      style: TextStyle(fontSize: 20.0),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              "Featured Pets",
-              style: TextStyle(
-                fontSize: 30.0,
-              ),
-            ),
-            const FeaturedPets(),
-          ],
+          ),
         ),
       ),
-    ));
+    );
+  }
+
+  Padding categoriesHeading() {
+    return const Padding(
+                padding: EdgeInsets.only(left: 10),
+                child: Text(
+                  'Categories',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              );
+  }
+
+  Padding petGrid() {
+    return Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: GridView.builder(
+                  shrinkWrap: true, // Ensures the grid doesn't take up extra space
+                  physics: const NeverScrollableScrollPhysics(), // Prevents scrolling of the grid (parent ScrollView handles scrolling)
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, // 2 columns
+                    crossAxisSpacing: 15, // Space between columns
+                    mainAxisSpacing: 15, // Space between rows
+                    childAspectRatio: 1, // Square containers
+                  ),
+                  itemCount: pets.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(pets[index].petIconPath),
+                          fit: BoxFit.cover,
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Stack(
+                        children: [
+                          // Positioned like/love icon at the top-right
+                          Positioned(
+                            top: 10,
+                            right: 10,
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  // Toggle the liked state
+                                  likedPets[index] = !likedPets[index];
+                                });
+                              },
+                              child: Icon(
+                                likedPets[index] ? Icons.favorite : Icons.favorite_border,
+                                color: Colors.white,
+                                size: 24,
+                              ),
+                            ),
+                          ),
+                          // First text at the bottom-left
+                          Positioned(
+                            bottom: 30,
+                            left: 10,
+                            child: Text(
+                              pets[index].petName,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w900,
+                                color: Colors.white,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                          // Row with icon and second text, positioned below the first one
+                          Positioned(
+                            bottom: 10,
+                            left: 10,
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  Icons.location_on_outlined, 
+                                  color: Colors.white,
+                                  size: 16,
+                                ),
+                                const SizedBox(width: 5),
+                                Text(
+                                  pets[index].location,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              );
+  }
+
+  SizedBox categoriesList() {
+    return SizedBox(
+                height: 60,
+                child: ListView.separated(
+                  itemCount: categories.length,
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.only(left: 10, right: 20),
+                  separatorBuilder: (context, index) => const SizedBox(width: 35),
+                  itemBuilder: (context, index) {
+                    return Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: categories[index].color.withOpacity(0.3),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            categories[index].iconPath,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              );
   }
 }
