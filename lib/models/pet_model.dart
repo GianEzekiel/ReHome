@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class PetModel {
   String petName;
   String petIconPath;
