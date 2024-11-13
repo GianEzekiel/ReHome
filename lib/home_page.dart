@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rehome/featured_pets.dart'; // Assuming FeaturedPets is a custom widget
-import 'package:rehome/models/category_model.dart'; // Assuming CategoryModel is a model for categories
-import 'package:rehome/models/pet_model.dart'; // Assuming PetModel is a model for pets
+import 'package:rehome/featured_pets.dart'; 
+import 'package:rehome/models/category_model.dart'; 
+import 'package:rehome/models/pet_model.dart'; 
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -111,7 +111,8 @@ class _HomePageState extends State<HomePage> {
                 const Text(
                   "Featured Pets",
                   style: TextStyle(
-                    fontSize: 30.0,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 const FeaturedPets(), 
@@ -135,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                   'Categories',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 18,
+                    fontSize: 24,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -234,7 +235,7 @@ class _HomePageState extends State<HomePage> {
                   itemCount: categories.length,
                   scrollDirection: Axis.horizontal,
                   padding: const EdgeInsets.only(left: 10, right: 20),
-                  separatorBuilder: (context, index) => const SizedBox(width: 35),
+                  separatorBuilder: (context, index) => const SizedBox(width: 20),
                   itemBuilder: (context, index) {
                     return Container(
                       width: 60,

@@ -16,6 +16,14 @@ class CategoryModel {
 
     categories.add(
       CategoryModel(
+        name: 'Settings',
+        iconPath: 'assets/icons/sliders.png',
+        color: const Color.fromARGB(255, 224, 222, 222),
+      )
+    );
+
+    categories.add(
+      CategoryModel(
         name: 'Cats',
         iconPath: 'assets/icons/cats.png',
         color: Colors.grey
