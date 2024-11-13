@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'splash_screen.dart';
 import 'package:rehome/main_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -10,10 +11,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Category',
-      home: MainPage(),
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
+      home: SplashScreen(),
     );
   }
 }
