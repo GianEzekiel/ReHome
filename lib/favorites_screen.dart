@@ -16,14 +16,18 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: const Text(
+          'Favorites',
+          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 24),
+        ),
       ),
       body: const SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.symmetric(vertical: 10.0),
           child: Column(
             children: [
               CategoriesList(),
+              SizedBox(height: 20),
               PetGrid(),
             ],
           ),
