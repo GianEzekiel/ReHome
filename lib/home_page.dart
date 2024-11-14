@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rehome/custom_drawer.dart';
 import 'package:rehome/featured_pets.dart';
-import 'package:rehome/models/category_model.dart';
-import 'package:rehome/models/pet_model.dart';
-import 'package:rehome/pet_details_page.dart';
+import 'package:rehome/widgets/categories_heading.dart';
+import 'package:rehome/widgets/categories_list.dart';
+import 'package:rehome/widgets/pet_grid.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,27 +14,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  List<CategoryModel> categories = [];
-  List<PetModel> pets = [];
-  List<bool> likedPets = [];
-
-  // Initialize categories and pets
-  void _getCategories() {
-    categories = CategoryModel.getCategories();
-  }
-
-  void _getPets() {
-    pets = PetModel.getPets();
-    likedPets = List.generate(pets.length, (index) => false);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _getCategories();
-    _getPets();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,158 +109,14 @@ class _HomePageState extends State<HomePage> {
                 ),
                 const FeaturedPets(),
                 const SizedBox(height: 20),
-                categoriesHeading(),
+                const CategoriesHeading(),
                 const SizedBox(height: 5),
-                categoriesList(),
-                petGrid(),
+                const CategoriesList(),
+                const PetGrid(),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Padding categoriesHeading() {
-    return const Padding(
-      padding: EdgeInsets.only(left: 10),
-      child: Text(
-        'Categories',
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 24,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-    );
-  }
-
-  Padding petGrid() {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: GridView.builder(
-        shrinkWrap: true, // Ensures the grid doesn't take up extra space
-        physics:
-            const NeverScrollableScrollPhysics(), // Prevents scrolling of the grid (parent ScrollView handles scrolling)
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // 2 columns
-          crossAxisSpacing: 15, // Space between columns
-          mainAxisSpacing: 15, // Space between rows
-          childAspectRatio: 1, // Square containers
-        ),
-        itemCount: pets.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              // Navigate to the pet's details page, passing PetModel
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PetDetailsPage(pet: pets[index]),
-                ),
-              );
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(pets[index].petIconPath),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Stack(
-                children: [
-                  // Positioned like/love icon at the top-right
-                  Positioned(
-                    top: 10,
-                    right: 10,
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          // Toggle the liked state
-                          likedPets[index] = !likedPets[index];
-                        });
-                      },
-                      child: Icon(
-                        likedPets[index]
-                            ? Icons.favorite
-                            : Icons.favorite_border,
-                        color: Colors.white,
-                        size: 24,
-                      ),
-                    ),
-                  ),
-                  // First text at the bottom-left
-                  Positioned(
-                    bottom: 30,
-                    left: 10,
-                    child: Text(
-                      pets[index].petName,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                  // Row with icon and second text, positioned below the first one
-                  Positioned(
-                    bottom: 10,
-                    left: 10,
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.location_on_outlined,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                        const SizedBox(width: 5),
-                        Text(
-                          pets[index].location,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  SizedBox categoriesList() {
-    return SizedBox(
-      height: 60,
-      child: ListView.separated(
-        itemCount: categories.length,
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.only(left: 10, right: 20),
-        separatorBuilder: (context, index) => const SizedBox(width: 20),
-        itemBuilder: (context, index) {
-          return Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-              color: categories[index].color.withOpacity(0.3),
-              shape: BoxShape.circle,
-            ),
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.asset(
-                  categories[index].iconPath,
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-          );
-        },
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rehome/adoption_guide.dart';
+import 'package:rehome/favorites_screen.dart';
 import 'package:rehome/messages.dart';
 import 'package:rehome/profile_screen.dart';
 
@@ -62,7 +63,10 @@ class CustomDrawer extends StatelessWidget {
             leading: const Icon(Icons.favorite),
             title: const Text('Favorites'),
             onTap: () {
-              // Handle navigation or action
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const FavoritesScreen()),
+              );
             },
           ),
           ListTile(
