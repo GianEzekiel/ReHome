@@ -13,7 +13,6 @@ class PetDetailsPage extends StatelessWidget {
         children: [
           backgroundImage(),
           backButton(context),
-
           Positioned(
             bottom: 0,
             left: 0,
@@ -40,13 +39,7 @@ class PetDetailsPage extends StatelessWidget {
                     const SizedBox(height: 15),
                     ownerDetails(),
                     const SizedBox(height: 15),
-                    Text(
-                      pet.description,
-                      style: const TextStyle(
-                        fontSize: 14,
-                      ),
-                      textAlign: TextAlign.justify,
-                    ),
+                    petDescription(),
                     const SizedBox(height: 35),
                     adoptButton()
                   ],
@@ -57,6 +50,16 @@ class PetDetailsPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Text petDescription() {
+    return Text(
+                    pet.description,
+                    style: const TextStyle(
+                      fontSize: 14,
+                    ),
+                    textAlign: TextAlign.justify,
+                  );
   }
 
   Align adoptButton() {
