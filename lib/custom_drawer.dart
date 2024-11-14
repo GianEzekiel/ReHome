@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rehome/adoption_guide.dart';
 import 'package:rehome/messages.dart';
+import 'package:rehome/profile_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
