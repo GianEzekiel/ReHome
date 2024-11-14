@@ -39,7 +39,6 @@ class MainScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(builder: (context) => const HomePage()),
                   );
-                  print('Button Pressed');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,

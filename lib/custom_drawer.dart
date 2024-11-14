@@ -11,17 +11,17 @@ class CustomDrawer extends StatelessWidget {
         children: [
           const SizedBox(
             height: 170,
-            child: const Align(
+            child: Align(
               alignment: Alignment.center,
               child: DrawerHeader(
-                decoration: const BoxDecoration(color: Colors.white),
+                decoration: BoxDecoration(color: Colors.white),
                 child: Row(
                   children: [
-                    const CircleAvatar(
+                    CircleAvatar(
                       radius: 30, // Adjust the size to match the image
                       backgroundImage: AssetImage('lib/assets/avatar.jpg'),
                     ),
-                    const SizedBox(
+                    SizedBox(
                         width:
                             16), // Add more space between the avatar and text
                     Column(
@@ -30,7 +30,7 @@ class CustomDrawer extends StatelessWidget {
                       mainAxisAlignment:
                           MainAxisAlignment.center, // Center text vertically
                       children: [
-                        const Text(
+                        Text(
                           'Username',
                           style: TextStyle(
                             fontSize: 20, // Adjust font size for the name
@@ -38,7 +38,7 @@ class CustomDrawer extends StatelessWidget {
                             color: Colors.black,
                           ),
                         ),
-                        const SizedBox(
+                        SizedBox(
                             height: 4), // Space between the name and email
                         Text(
                           'username@gmail.com',
