@@ -10,6 +10,7 @@ class FeaturedPets extends StatelessWidget {
       child: SizedBox(
         height: 220,
         child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             buildImageCard(
@@ -17,19 +18,19 @@ class FeaturedPets extends StatelessWidget {
               name: 'Mae',
               location: 'Batangas City',
             ),
-            const SizedBox(width: 10),
+            const SizedBox(width: 20),
             buildImageCard(
               imagePath: 'assets/featured_pets/cat_2.jpg',
               name: 'Grace',
               location: 'San Juan',
             ),
-            const SizedBox(width: 10),
+            const SizedBox(width: 20),
             buildImageCard(
               imagePath: 'assets/featured_pets/dog.jpg',
               name: 'George',
               location: 'Lucena City',
             ),
-            const SizedBox(width: 10),
+            const SizedBox(width: 20),
             buildImageCard(
               imagePath: 'assets/featured_pets/bird.jpg',
               name: 'Wally',

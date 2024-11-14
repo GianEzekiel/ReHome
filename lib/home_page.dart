@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:rehome/custom_drawer.dart';
 import 'package:rehome/featured_pets.dart';
 import 'package:rehome/widgets/categories_heading.dart';
@@ -21,15 +22,17 @@ class _HomePageState extends State<HomePage> {
       key: _scaffoldKey,
       drawer: const CustomDrawer(),
       body: Container(
-        color: const Color(0xFFF4F4F4),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 35),
-                Row(
+        color: const Color(0xFFF5F5F5),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Top Items
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
@@ -65,21 +68,28 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
-                const Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "Search Friend",
-                    style: TextStyle(
-                      fontSize: 30.0,
-                    ),
+              ),
+              const SizedBox(height: 20),
+
+              // Search
+              const Padding(
+                padding: EdgeInsets.only(left: 20.0),
+                child: Text(
+                  "Search Friend",
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-                Container(
+              ),
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Container(
                   height: 50.0,
-                  width: 373.0,
+                  width: double.infinity,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFD9D8D8),
+                    color: const Color(0xFFD9D9D9).withOpacity(0.6),
                     borderRadius: BorderRadius.circular(25.0),
                   ),
                   child: const Padding(
@@ -87,34 +97,41 @@ class _HomePageState extends State<HomePage> {
                     child: Row(
                       children: [
                         Icon(
-                          Icons.search,
-                          color: Colors.black,
-                          size: 40.0,
+                          Iconsax.search_normal_1,
+                          color: Color(0xFF808080),
+                          size: 30.0,
                         ),
+                        SizedBox(width: 10.0),
                         Text(
-                          "Search",
-                          style: TextStyle(fontSize: 20.0),
+                          "Search...",
+                          style: TextStyle(fontSize: 20.0, color: Color(0xFF808080)),
                         ),
                       ],
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
-                const Text(
+              ),
+              const SizedBox(height: 20),
+
+              // Featured Pets
+              const Padding(
+                padding: EdgeInsets.only(left: 20.0),
+                child: Text(
                   "Featured Pets",
                   style: TextStyle(
                     fontSize: 24,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-                const FeaturedPets(),
-                const SizedBox(height: 20),
-                const CategoriesHeading(),
-                const SizedBox(height: 5),
-                const CategoriesList(),
-                const PetGrid(),
-              ],
-            ),
+              ),
+              const FeaturedPets(),
+              const SizedBox(height: 20),
+
+              const CategoriesHeading(),
+              const SizedBox(height: 5),
+              const CategoriesList(),
+              const PetGrid(),
+            ],
           ),
         ),
       ),
