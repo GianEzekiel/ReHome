@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                           child: const CircleAvatar(
                             radius: 20,
                             backgroundImage:
-                                AssetImage('lib/assets/avatar.jpg'),
+                                AssetImage('assets/avatars/wony.jpg'),
                           ),
                         ),
                         const SizedBox(width: 8),

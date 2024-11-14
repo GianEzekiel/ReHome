@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
-                'lib/assets/logo.png',
+                'assets/logo.png',
                 height: 253.0,
                 width: 253.0,
               ),
