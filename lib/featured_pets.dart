@@ -13,25 +13,25 @@ class FeaturedPets extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             buildImageCard(
-              imagePath: 'lib/assets/featured_pets/cat_1.jpg',
+              imagePath: 'assets/featured_pets/cat_1.jpg',
               name: 'Mae',
               location: 'Batangas City',
             ),
             const SizedBox(width: 10),
             buildImageCard(
-              imagePath: 'lib/assets/featured_pets/cat_2.jpg',
+              imagePath: 'assets/featured_pets/cat_2.jpg',
               name: 'Grace',
               location: 'San Juan',
             ),
             const SizedBox(width: 10),
             buildImageCard(
-              imagePath: 'lib/assets/featured_pets/dog.jpg',
+              imagePath: 'assets/featured_pets/dog.jpg',
               name: 'George',
               location: 'Lucena City',
             ),
             const SizedBox(width: 10),
             buildImageCard(
-              imagePath: 'lib/assets/featured_pets/bird.jpg',
+              imagePath: 'assets/featured_pets/bird.jpg',
               name: 'Wally',
               location: 'Laguna',
             ),
@@ -110,21 +110,39 @@ Widget buildImageCard({
           ),
         ),
         // Heart Icon (Favorite Button)
-        Positioned(
+        const Positioned(
           top: 10,
           right: 10,
-          child: IconButton(
-            icon: const Icon(
-              Icons.favorite_border,
-              color: Colors.white,
-              size: 28,
-            ),
-            onPressed: () {
-              // Handle favorite button press
-            },
-          ),
+          child: FavoriteIconButton(),
         ),
       ],
     ),
   );
+}
+
+class FavoriteIconButton extends StatefulWidget {
+  const FavoriteIconButton({super.key});
+
+  @override
+  _FavoriteIconButtonState createState() => _FavoriteIconButtonState();
+}
+
+class _FavoriteIconButtonState extends State<FavoriteIconButton> {
+  bool isFavorite = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+        isFavorite ? Icons.favorite : Icons.favorite_border,
+        color: Colors.white,
+        size: 28,
+      ),
+      onPressed: () {
+        setState(() {
+          isFavorite = !isFavorite; // Toggle the state
+        });
+      },
+    );
+  }
 }

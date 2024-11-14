@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rehome/profile_screen.dart';
+import 'package:rehome/adoption_guide.dart';
+import 'package:rehome/messages.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -20,7 +21,7 @@ class CustomDrawer extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 30, // Adjust the size to match the image
-                      backgroundImage: AssetImage('lib/assets/avatar.jpg'),
+                      backgroundImage: AssetImage('assets/avatars/wony.jpg'),
                     ),
                     SizedBox(
                         width:
@@ -67,7 +68,10 @@ class CustomDrawer extends StatelessWidget {
             leading: const Icon(Icons.message),
             title: const Text('Messages'),
             onTap: () {
-              // Handle navigation or action
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const MessageScreen()),
+              );
             },
           ),
           ListTile(
@@ -75,6 +79,11 @@ class CustomDrawer extends StatelessWidget {
             title: const Text('Adoption Guide'),
             onTap: () {
               // Handle navigation or action
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const AdoptionGuideScreen()),
+              );
             },
           ),
           ListTile(

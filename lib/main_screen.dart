@@ -16,7 +16,7 @@ class MainScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
-                'lib/assets/main_illustration.png',
+                'assets/main_illustration.png',
                 height: 365.0,
                 width: 365.0,
               ),
