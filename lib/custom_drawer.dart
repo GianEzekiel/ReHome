@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rehome/adoption_guide.dart';
 import 'package:rehome/messages.dart';
+import 'package:rehome/profile_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -97,7 +98,12 @@ class CustomDrawer extends StatelessWidget {
             leading: const Icon(Icons.person),
             title: const Text('Profile'),
             onTap: () {
-              // Handle navigation or action
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfileScreen(),
+                ),
+                );
             },
           ),
           ListTile(
