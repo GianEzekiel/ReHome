@@ -27,31 +27,38 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(bottom: 20.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset(
+        child: Stack(
+          children: [
+            // Logo
+            Center(
+              child: Image.asset(
                 'assets/logo.png',
                 height: 253.0,
                 width: 253.0,
               ),
-              const SizedBox(height: 200.0),
-              const Text(
-                'ReHOME',
-                style: TextStyle(
-                  fontSize: 48.0,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 1.5,
-                  color: Colors.black,
+            ),
+
+            // App Name
+            const Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Text(
+                  'ReHOME',
+                  style: TextStyle(
+                    fontSize: 44.0,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 1.5,
+                    color: Colors.black,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
-    );
+    );   
   }
 }

@@ -29,7 +29,7 @@ class _CategoriesListState extends State<CategoriesList> {
       child: ListView.separated(
         itemCount: categories.length,
         scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.only(left: 10, right: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         separatorBuilder: (context, index) => const SizedBox(width: 20),
         itemBuilder: (context, index) {
           return Container(
