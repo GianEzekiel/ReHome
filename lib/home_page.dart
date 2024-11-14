@@ -34,36 +34,58 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            // Open the drawer when the avatar is tapped
-                            _scaffoldKey.currentState?.openDrawer();
-                          },
-                          child: const CircleAvatar(
-                            radius: 20,
-                            backgroundImage:
-                                AssetImage('assets/avatars/wony.jpg'),
-                          ),
+                    Container(
+                      padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: Color(0xFFFFFFFF),
+                        borderRadius: BorderRadius.circular(50),
+                        border: Border.all(
+                          color: Color(0xFF808080),
+                          width: 0.1,
                         ),
-                        const SizedBox(width: 8),
-                        const Text(
-                          'Username',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                    IconButton(
-                      icon: const Icon(
-                        Icons.notifications_outlined,
-                        color: Colors.black,
                       ),
-                      onPressed: () {},
+                      child: Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              // Open the drawer when the avatar is tapped
+                              _scaffoldKey.currentState?.openDrawer();
+                            },
+                            child: const CircleAvatar(
+                              radius: 20,
+                              backgroundImage:
+                                  AssetImage('assets/avatars/wony.jpg'),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          const Text(
+                            'Username',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xFFFFFFFF),
+                        borderRadius: BorderRadius.circular(50),
+                        border: Border.all(
+                          color: Color(0xFF808080),
+                          width: 0.1,
+                        ),
+                      ),
+                      child: IconButton(
+                        icon: const Icon(
+                          Iconsax.notification,
+                          color: Colors.black,
+                          size: 28,
+                        ),
+                        onPressed: () {},
+                      ),
                     ),
                   ],
                 ),
