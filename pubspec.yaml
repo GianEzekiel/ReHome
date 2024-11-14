@@ -63,6 +63,8 @@ flutter:
       - assets/avatars/
       - assets/logo.png
       - assets/main_illustration.png
+      - assets/illustration.png
+      - assets/illustration.jpg
       - assets/featured_pets/
       - assets/icons/
       - assets/images/
