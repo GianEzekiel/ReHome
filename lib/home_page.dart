@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:rehome/custom_drawer.dart';
 import 'package:rehome/featured_pets.dart';
-import 'package:rehome/widgets/categories_heading.dart';
 import 'package:rehome/widgets/categories_list.dart';
 import 'package:rehome/widgets/pet_grid.dart';
 
@@ -76,10 +75,7 @@ class _HomePageState extends State<HomePage> {
                 padding: EdgeInsets.only(left: 20.0),
                 child: Text(
                   "Search Friend",
-                  style: TextStyle(
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
                 ),
               ),
               const SizedBox(height: 10),
@@ -118,17 +114,20 @@ class _HomePageState extends State<HomePage> {
                 padding: EdgeInsets.only(left: 20.0),
                 child: Text(
                   "Featured Pets",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
                 ),
               ),
               const FeaturedPets(),
               const SizedBox(height: 20),
 
-              const CategoriesHeading(),
-              const SizedBox(height: 5),
+              const Padding(
+                padding: EdgeInsets.only(left: 20.0),
+                child: Text(
+                  "Categories",
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                ),
+              ),
+              const SizedBox(height: 10),
               const CategoriesList(),
               const PetGrid(),
             ],

@@ -28,15 +28,15 @@ class _PetGridState extends State<PetGrid> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: GridView.builder(
         shrinkWrap: true, // Ensures the grid doesn't take up extra space
         physics:
             const NeverScrollableScrollPhysics(), // Prevents scrolling of the grid (parent ScrollView handles scrolling)
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, // 2 columns
-          crossAxisSpacing: 15, // Space between columns
-          mainAxisSpacing: 15, // Space between rows
+          crossAxisSpacing: 20, // Space between columns
+          mainAxisSpacing: 20, // Space between rows
           childAspectRatio: 1, // Square containers
         ),
         itemCount: pets.length,
