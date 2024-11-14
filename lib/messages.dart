@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rehome/custom_app_bar.dart';
 import 'package:rehome/home_page.dart';
+import 'package:iconsax/iconsax.dart';
 
 class MessageScreen extends StatelessWidget {
   const MessageScreen({super.key});
@@ -15,7 +16,7 @@ class MessageScreen extends StatelessWidget {
               radius: 30,
               backgroundImage: AssetImage(avatarPath),
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 15),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -24,7 +25,7 @@ class MessageScreen extends StatelessWidget {
                   username,
                   style: const TextStyle(
                     fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     color: Colors.black,
                   ),
                 ),
@@ -34,7 +35,7 @@ class MessageScreen extends StatelessWidget {
                       email,
                       style: const TextStyle(
                         fontSize: 14,
-                        color: Colors.grey,
+                        color: Color(0xFF535763),
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -42,7 +43,7 @@ class MessageScreen extends StatelessWidget {
                       extraInfo,
                       style: const TextStyle(
                         fontSize: 14,
-                        color: Colors.grey,
+                        color: Color(0xFF535763),
                       ),
                     ),
                   ],
@@ -51,7 +52,7 @@ class MessageScreen extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 15),
+        const SizedBox(height: 20),
       ],
     );
   }
@@ -72,15 +73,15 @@ class MessageScreen extends StatelessWidget {
       body: Container(
         color: const Color(0xFFF4F4F4),
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(
             child: Column(
               children: [
                 Container(
                   height: 50.0,
-                  width: 363.0,
+                  width: double.infinity,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFD9D8D8),
+                    color: const Color(0xFFD9D9D9).withOpacity(0.6),
                     borderRadius: BorderRadius.circular(25.0),
                   ),
                   child: const Padding(
@@ -88,13 +89,14 @@ class MessageScreen extends StatelessWidget {
                     child: Row(
                       children: [
                         Icon(
-                          Icons.search,
-                          color: Colors.black,
-                          size: 40.0,
+                          Iconsax.search_normal_1,
+                          color: Color(0xFF808080),
+                          size: 30.0,
                         ),
+                        SizedBox(width: 10.0),
                         Text(
-                          "Search",
-                          style: TextStyle(fontSize: 20.0),
+                          "Search...",
+                          style: TextStyle(fontSize: 20.0, color: Color(0xFF808080)),
                         ),
                       ],
                     ),
@@ -104,15 +106,15 @@ class MessageScreen extends StatelessWidget {
 
                 // Replace this section with individual calls to `buildUserRow`
                 buildUserRow('assets/avatars/chaewon.jpg', 'Kim Chaewon',
-                    'hm po', '2:30 pm'),
+                    'hm po', '· 2:30 pm'),
                 buildUserRow(
-                    'assets/avatars/julie.jpg', 'Julie', 'meet up?', '1:54 pm'),
+                    'assets/avatars/julie.jpg', 'Julie', 'meet up?', '· 1:54 pm'),
                 buildUserRow('assets/avatars/jungkook.jpg', 'Jungkook', 'hm po',
-                    '1:30 pm'),
+                    '· 1:30 pm'),
                 buildUserRow(
-                    'assets/avatars/ken.jpg', 'Ken', 'hm po', '12:47 pm'),
+                    'assets/avatars/ken.jpg', 'Ken', 'hm po', '· 12:47 pm'),
                 buildUserRow(
-                    'assets/avatars/stell.jpg', 'Stell', 'hm po', '12:37 pm'),
+                    'assets/avatars/stell.jpg', 'Stell', 'hm po', '· 12:37 pm'),
                 // Repeat as needed for other users
               ],
             ),
