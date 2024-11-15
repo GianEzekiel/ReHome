@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rehome/custom_app_bar.dart';
-import 'package:rehome/home_page.dart';
+import 'package:iconsax/iconsax.dart';
 
 class AdoptionGuideScreen extends StatelessWidget {
   const AdoptionGuideScreen({super.key});
@@ -26,7 +26,7 @@ class AdoptionGuideScreen extends StatelessWidget {
                 'Follow these steps to give a loving pet a new home through ReHOME.',
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: Colors.black,
+                  color: Color(0xFF535763),
                 ),
               ),
               const SizedBox(height: 16.0),
@@ -35,28 +35,28 @@ class AdoptionGuideScreen extends StatelessWidget {
                 title: 'Browse',
                 description:
                     'Search our database of pets needing homes. Use filters to find pets that match your lifestyle.',
-                icon: Icons.check_circle_outline,
+                icon: Iconsax.tick_circle,
               ),
               GuideStep(
                 stepNumber: 'Step 2',
                 title: 'Connect',
                 description:
                     'Reach out to pet owners through our secure messaging system to ask questions and arrange meetings.',
-                icon: Icons.people_outline,
+                icon: Iconsax.profile_2user,
               ),
               GuideStep(
                 stepNumber: 'Step 3',
                 title: 'Meet',
                 description:
                     'Schedule a meet-and-greet with the pet and its current owner to ensure it\'s a good match.',
-                icon: Icons.info_outline,
+                icon: Iconsax.info_circle,
               ),
               GuideStep(
                 stepNumber: 'Step 4',
                 title: 'Adopt',
                 description:
                     'Complete the adoption process, including any necessary paperwork and fees.',
-                icon: Icons.file_copy_outlined,
+                icon: Iconsax.document,
               ),
               const SizedBox(height: 24.0),
               const Center(
@@ -102,12 +102,12 @@ class AdoptionGuideScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      Text(
+                      const Text(
                         'Start your journey to find your perfect pet companion today',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
-                          color: Colors.grey[600],
+                          color: Color(0xFF535763),
                         ),
                       ),
                       const SizedBox(height: 20),
