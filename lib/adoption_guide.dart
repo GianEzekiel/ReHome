@@ -8,17 +8,15 @@ class AdoptionGuideScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF4F4F4),
       appBar: CustomAppBar(
-        title: "Adoptation Guide",
+        title: "Adoption Guide",
         onBackPress: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const HomePage()),
-          );
+          Navigator.pop(context);
         },
       ),
       body: Container(
-        color: const Color(0xFFF4F4F4),
+        // color: const Color(0xFFF4F4F4),
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Column(

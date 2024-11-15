@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rehome/custom_app_bar.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -14,8 +15,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     bool isChecked1 = false;  // For the first checkbox
     bool isChecked2 = false;  // For the second checkbox
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile'),
+      backgroundColor: const Color(0xFFF4F4F4),
+      appBar: CustomAppBar(
+        title: "Profile",
+        onBackPress: () {
+          Navigator.pop(context);
+        },
       ),
       body: SingleChildScrollView(
         child: Center(
