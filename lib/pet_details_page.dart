@@ -1,10 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:rehome/models/pet_model.dart';
 
-class PetDetailsPage extends StatelessWidget {
+class PetDetailsPage extends StatefulWidget {
   final PetModel pet;
 
   const PetDetailsPage({super.key, required this.pet});
+
+  @override
+  _PetDetailsPageState createState() => _PetDetailsPageState();
+}
+
+class _PetDetailsPageState extends State<PetDetailsPage> {
+  final GlobalKey _descriptionKey = GlobalKey(); // Key to measure description height
+  double _maxChildSize = 0.55; // Default maxChildSize
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(_measureDescriptionHeight);
+  }
+
+  // Measure the height of the description text after the widget is built
+  void _measureDescriptionHeight(Duration time) {
+    final RenderBox renderBox = _descriptionKey.currentContext!.findRenderObject() as RenderBox;
+    final descriptionHeight = renderBox.size.height;
+
+    // Update maxChildSize dynamically based on the height of the description
+    setState(() {
+      // Ensure the maxChildSize doesn't exceed the full screen
+      _maxChildSize = (descriptionHeight / MediaQuery.of(context).size.height).clamp(0.55, 1.0);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,40 +39,43 @@ class PetDetailsPage extends StatelessWidget {
         children: [
           backgroundImage(),
           backButton(context),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.55,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
+
+          DraggableScrollableSheet(
+            initialChildSize: 0.55, 
+            minChildSize: 0.33,
+            maxChildSize: _maxChildSize, // Dynamic height
+            builder: (context, scrollController) {
+              return Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
                 ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(22.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    petHeader(),
-                    const SizedBox(width: 5),
-                    locationTitle(),
-                    const SizedBox(height: 10),
-                    petDetails(),
-                    const SizedBox(height: 15),
-                    ownerDetails(),
-                    const SizedBox(height: 15),
-                    petDescription(),
-                    const SizedBox(height: 35),
-                    adoptButton()
-                  ],
+                child: SingleChildScrollView(
+                  controller: scrollController,
+                  padding: const EdgeInsets.all(22.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      petHeader(),
+                      const SizedBox(height: 5),
+                      locationTitle(),
+                      const SizedBox(height: 10),
+                      petDetails(),
+                      const SizedBox(height: 15),
+                      ownerDetails(),
+                      const SizedBox(height: 15),
+                      petDescription(),
+                      const SizedBox(height: 85), 
+                    ],
+                  ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
+          adoptButton(),
         ],
       ),
     );
@@ -54,7 +83,8 @@ class PetDetailsPage extends StatelessWidget {
 
   Text petDescription() {
     return Text(
-      pet.description,
+      widget.pet.description,
+      key: _descriptionKey, // Key for measuring length
       style: const TextStyle(
         fontSize: 14,
       ),
@@ -62,20 +92,25 @@ class PetDetailsPage extends StatelessWidget {
     );
   }
 
-  Align adoptButton() {
-    return Align(
-      alignment: Alignment.center,
-      child: ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.black,
-          padding: const EdgeInsets.symmetric(horizontal: 138, vertical: 20),
-        ),
-        child: const Text(
-          "Adopt Me",
-          style: TextStyle(
-            fontSize: 16,
-            color: Colors.white,
+  Positioned adoptButton() {
+    return Positioned(
+      bottom: 30, // Distance from the bottom of the screen
+      left: 16,
+      right: 16,
+      child: Align(
+        alignment: Alignment.center,
+        child: ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.black,
+            padding: const EdgeInsets.symmetric(horizontal: 138, vertical: 20),
+          ),
+          child: const Text(
+            "Adopt Me",
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.white,
+            ),
           ),
         ),
       ),
@@ -86,7 +121,7 @@ class PetDetailsPage extends StatelessWidget {
     return Row(
       children: [
         CircleAvatar(
-          backgroundImage: AssetImage(pet.ownerIconPath),
+          backgroundImage: AssetImage(widget.pet.ownerIconPath),
           radius: 25,
         ),
         const SizedBox(width: 10),
@@ -94,14 +129,14 @@ class PetDetailsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              pet.ownerName,
+              widget.pet.ownerName,
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              '${pet.petName}\'s Owner',
+              '${widget.pet.petName}\'s Owner',
               style: TextStyle(
                 color: Colors.black.withOpacity(0.6),
                 fontSize: 12,
@@ -130,12 +165,12 @@ class PetDetailsPage extends StatelessWidget {
           height: 75,
           width: 75,
           decoration: BoxDecoration(
-              color: const Color(0xFFFFADC7),
+              color: widget.pet.color,
               borderRadius: BorderRadius.circular(12)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(pet.sex,
+              Text(widget.pet.sex,
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -150,9 +185,7 @@ class PetDetailsPage extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(
-          width: 15,
-        ),
+        const SizedBox(width: 15),
         Container(
           height: 75,
           width: 75,
@@ -162,7 +195,7 @@ class PetDetailsPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(pet.age,
+              Text(widget.pet.age,
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -177,9 +210,7 @@ class PetDetailsPage extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(
-          width: 15,
-        ),
+        const SizedBox(width: 15),
         Container(
           height: 75,
           width: 75,
@@ -189,7 +220,7 @@ class PetDetailsPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(pet.weight,
+              Text(widget.pet.weight,
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -218,7 +249,7 @@ class PetDetailsPage extends StatelessWidget {
         ),
         const SizedBox(width: 5),
         Text(
-          pet.location,
+          widget.pet.location,
           style: TextStyle(
             color: Colors.black.withOpacity(0.6),
             fontSize: 14,
@@ -233,7 +264,7 @@ class PetDetailsPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          pet.petName,
+          widget.pet.petName,
           style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -289,7 +320,7 @@ class PetDetailsPage extends StatelessWidget {
   Positioned backgroundImage() {
     return Positioned.fill(
       child: Image.asset(
-        pet.petIconPath,
+        widget.pet.petIconPath,
         fit: BoxFit.cover,
       ),
     );
