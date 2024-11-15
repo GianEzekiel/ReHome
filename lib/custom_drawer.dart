@@ -10,122 +10,151 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
+      child: Column(
         children: [
-          const SizedBox(
-            height: 170,
-            child: Align(
-              alignment: Alignment.center,
-              child: DrawerHeader(
-                decoration: BoxDecoration(color: Colors.white),
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 30, // Adjust the size to match the image
-                      backgroundImage: AssetImage('assets/avatars/wony.jpg'),
-                    ),
-                    SizedBox(
-                        width:
-                            16), // Add more space between the avatar and text
-                    Column(
-                      crossAxisAlignment:
-                          CrossAxisAlignment.start, // Align text to the left
-                      mainAxisAlignment:
-                          MainAxisAlignment.center, // Center text vertically
-                      children: [
-                        Text(
-                          'Username',
-                          style: TextStyle(
-                            fontSize: 20, // Adjust font size for the name
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(20, 30, 0, 20),
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 30, // Adjust the size to match the image
+                        backgroundImage: AssetImage('assets/avatars/wony.jpg'),
+                      ),
+                      SizedBox(
+                          width:
+                              16), // Add more space between the avatar and text
+                      Column(
+                        crossAxisAlignment:
+                            CrossAxisAlignment.start, // Align text to the left
+                        mainAxisAlignment:
+                            MainAxisAlignment.center, // Center text vertically
+                        children: [
+                          Text(
+                            'Username',
+                            style: TextStyle(
+                              fontSize: 20, // Adjust font size for the name
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                            height: 4), // Space between the name and email
-                        Text(
-                          'username@gmail.com',
-                          style: TextStyle(
-                            fontSize: 14, // Adjust font size for the email
-                            color:
-                                Colors.grey, // Light gray color for the email
+            
+                          Text(
+                            'username@gmail.com',
+                            style: TextStyle(
+                              fontSize: 14, // Adjust font size for the email
+                              color:
+                                  Colors.grey, // Light gray color for the email
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Divider(),
+                ),
+                CustomListTile(
+                  icon: SizedBox(width: 30, height: 30, child: Image.asset('assets/icons/heart.png')),
+                  text: 'Favorites',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const FavoritesScreen()),
+                    );
+                  },
+                ),
+                CustomListTile(
+                  icon: SizedBox(width: 30, height: 30, child: Image.asset('assets/icons/messages.png')),
+                  text: 'Messages',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const MessageScreen()),
+                    );
+                  },
+                ),
+                CustomListTile(
+                  icon: SizedBox(width: 30, height: 30, child: Image.asset('assets/icons/book.png')),
+                  text: 'Adoption Guide',
+                  onTap: () {
+                    // Handle navigation or action
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AdoptionGuideScreen()),
+                    );
+                  },
+                ),
+                CustomListTile(
+                  icon: SizedBox(width: 30, height: 30, child: Image.asset('assets/icons/profile-circle.png')),
+                  text: 'Profile',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProfileScreen(),
+                      ),
+                      );
+                  },
+                ),
+                CustomListTile(
+                  icon: SizedBox(width: 30, height: 30, child: Image.asset('assets/icons/message-question.png')),
+                  text: 'About Us',
+                  onTap: () {
+                    // Handle navigation or action
+                  },
+                ),
+              ],
             ),
           ),
-          ListTile(
-            leading: const Icon(Icons.favorite),
-            title: const Text('Favorites'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const FavoritesScreen()),
-              );
-            },
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Divider(),
           ),
-          ListTile(
-            leading: const Icon(Icons.message),
-            title: const Text('Messages'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const MessageScreen()),
-              );
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.pets),
-            title: const Text('Adoption Guide'),
-            onTap: () {
-              // Handle navigation or action
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const AdoptionGuideScreen()),
-              );
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.group),
-            title: const Text('Community Support'),
-            onTap: () {
-              // Handle navigation or action
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('Profile'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProfileScreen(),
-                ),
-                );
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Settings'),
-            onTap: () {
-              // Handle navigation or action
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.info),
-            title: const Text('About Us'),
-            onTap: () {
-              // Handle navigation or action
-            },
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+            child: CustomListTile(
+              icon: SizedBox(width: 30, height: 30, child: Image.asset('assets/icons/logout.png')),
+              text: 'Log Out',
+              onTap: () {
+                // Handle navigation or action
+              },
+            ),
           ),
         ],
       ),
+    );
+  }
+}
+
+// Custom List Tile
+class CustomListTile extends StatelessWidget {
+  final Widget icon;
+  final String text;
+  final VoidCallback onTap;
+
+  const CustomListTile({
+    Key? key,
+    required this.icon,
+    required this.text,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: icon, 
+      title: Text(
+        text,
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+      ),
+      onTap: onTap,
     );
   }
 }
