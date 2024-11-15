@@ -44,30 +44,29 @@ class _HomePageState extends State<HomePage> {
                           width: 0.1,
                         ),
                       ),
-                      child: Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              // Open the drawer when the avatar is tapped
-                              _scaffoldKey.currentState?.openDrawer();
-                            },
-                            child: const CircleAvatar(
-                              radius: 20,
-                              backgroundImage:
-                                  AssetImage('assets/avatars/wony.jpg'),
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          const Text(
-                            'Username',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ],
-                      ),
+                      child: GestureDetector(
+                          onTap: () {
+                            // Open the drawer when the avatar is tapped
+                            _scaffoldKey.currentState?.openDrawer();
+                          },
+                          child: const Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 20,
+                                backgroundImage:
+                                    AssetImage('assets/avatars/wony.jpg'),
+                              ),
+                              SizedBox(width: 8),
+                              Text(
+                                'Username',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          )),
                     ),
                     Container(
                       decoration: BoxDecoration(
@@ -122,7 +121,8 @@ class _HomePageState extends State<HomePage> {
                         SizedBox(width: 10.0),
                         Text(
                           "Search...",
-                          style: TextStyle(fontSize: 20.0, color: Color(0xFF808080)),
+                          style: TextStyle(
+                              fontSize: 20.0, color: Color(0xFF808080)),
                         ),
                       ],
                     ),
