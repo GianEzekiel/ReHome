@@ -64,10 +64,7 @@ class MessageScreen extends StatelessWidget {
       appBar: CustomAppBar(
         title: "Messages",
         onBackPress: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => const HomePage()),
-          );
+          Navigator.pop(context);
         },
       ),
       body: Container(
