@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rehome/adoption_guide.dart';
 import 'package:rehome/favorites_screen.dart';
+import 'package:rehome/main_screen.dart';
 import 'package:rehome/messages.dart';
 import 'package:rehome/profile_screen.dart';
 
@@ -41,7 +42,6 @@ class CustomDrawer extends StatelessWidget {
                               color: Colors.black,
                             ),
                           ),
-            
                           Text(
                             'username@gmail.com',
                             style: TextStyle(
@@ -60,27 +60,38 @@ class CustomDrawer extends StatelessWidget {
                   child: Divider(),
                 ),
                 CustomListTile(
-                  icon: SizedBox(width: 30, height: 30, child: Image.asset('assets/icons/heart.png')),
+                  icon: SizedBox(
+                      width: 30,
+                      height: 30,
+                      child: Image.asset('assets/icons/heart.png')),
                   text: 'Favorites',
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const FavoritesScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => const FavoritesScreen()),
                     );
                   },
                 ),
                 CustomListTile(
-                  icon: SizedBox(width: 30, height: 30, child: Image.asset('assets/icons/messages.png')),
+                  icon: SizedBox(
+                      width: 30,
+                      height: 30,
+                      child: Image.asset('assets/icons/messages.png')),
                   text: 'Messages',
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const MessageScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => const MessageScreen()),
                     );
                   },
                 ),
                 CustomListTile(
-                  icon: SizedBox(width: 30, height: 30, child: Image.asset('assets/icons/book.png')),
+                  icon: SizedBox(
+                      width: 30,
+                      height: 30,
+                      child: Image.asset('assets/icons/book.png')),
                   text: 'Adoption Guide',
                   onTap: () {
                     // Handle navigation or action
@@ -92,7 +103,10 @@ class CustomDrawer extends StatelessWidget {
                   },
                 ),
                 CustomListTile(
-                  icon: SizedBox(width: 30, height: 30, child: Image.asset('assets/icons/profile-circle.png')),
+                  icon: SizedBox(
+                      width: 30,
+                      height: 30,
+                      child: Image.asset('assets/icons/profile-circle.png')),
                   text: 'Profile',
                   onTap: () {
                     Navigator.push(
@@ -100,11 +114,14 @@ class CustomDrawer extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (context) => ProfileScreen(),
                       ),
-                      );
+                    );
                   },
                 ),
                 CustomListTile(
-                  icon: SizedBox(width: 30, height: 30, child: Image.asset('assets/icons/message-question.png')),
+                  icon: SizedBox(
+                      width: 30,
+                      height: 30,
+                      child: Image.asset('assets/icons/message-question.png')),
                   text: 'About Us',
                   onTap: () {
                     // Handle navigation or action
@@ -120,10 +137,16 @@ class CustomDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
             child: CustomListTile(
-              icon: SizedBox(width: 30, height: 30, child: Image.asset('assets/icons/logout.png')),
+              icon: SizedBox(
+                  width: 30,
+                  height: 30,
+                  child: Image.asset('assets/icons/logout.png')),
               text: 'Log Out',
               onTap: () {
-                // Handle navigation or action
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MainScreen()),
+                );
               },
             ),
           ),
@@ -149,7 +172,7 @@ class CustomListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: icon, 
+      leading: icon,
       title: Text(
         text,
         style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
