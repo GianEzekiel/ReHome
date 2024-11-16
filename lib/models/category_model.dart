@@ -16,7 +16,7 @@ class CategoryModel {
 
     categories.add(
       CategoryModel(
-        name: 'Settings',
+        name: 'all',
         iconPath: 'assets/icons/sliders.png',
         color: const Color.fromARGB(255, 224, 222, 222),
       )
@@ -24,7 +24,7 @@ class CategoryModel {
 
     categories.add(
       CategoryModel(
-        name: 'Cats',
+        name: 'cat',
         iconPath: 'assets/icons/cats.png',
         color: Colors.grey
       )
@@ -32,7 +32,7 @@ class CategoryModel {
 
     categories.add(
       CategoryModel(
-        name: 'Dogs',
+        name: 'dog',
         iconPath: 'assets/icons/dogs.png',
         color: Colors.grey
       )
@@ -40,7 +40,7 @@ class CategoryModel {
 
     categories.add(
       CategoryModel(
-        name: 'Birds',
+        name: 'bird',
         iconPath: 'assets/icons/birds.png',
         color: Colors.grey
       )
@@ -48,7 +48,7 @@ class CategoryModel {
 
     categories.add(
       CategoryModel(
-        name: 'Fishes',
+        name: 'fish',
         iconPath: 'assets/icons/fishes.png',
         color: Colors.grey
       )

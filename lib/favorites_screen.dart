@@ -31,8 +31,6 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           child: Column(
             children: [
               CategoriesList(),
-              SizedBox(height: 20),
-              PetGrid(),
             ],
           ),
         ),
