@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               SizedBox(width: 8),
                               Text(
-                                'Username',
+                                'wonyoung',
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,
