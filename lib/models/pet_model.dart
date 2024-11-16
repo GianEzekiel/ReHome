@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PetModel {
+  String petType;
   String petName;
   String petIconPath;
   String location;
@@ -13,6 +14,7 @@ class PetModel {
   Color color;
 
   PetModel({
+    required this.petType,
     required this.petName,
     required this.petIconPath,
     required this.location,
@@ -30,6 +32,7 @@ class PetModel {
 
     pets.add(
       PetModel(
+        petType: 'cat',
         petName: 'Whiskers',
         petIconPath: 'assets/images/whiskers.jpg',
         location: 'Calamba',
@@ -45,6 +48,7 @@ class PetModel {
 
     pets.add(
       PetModel(
+        petType: 'dog',
         petName: 'Max',
         petIconPath: 'assets/images/max.jpg',
         location: 'Alangilan',
@@ -60,6 +64,7 @@ class PetModel {
 
     pets.add(
         PetModel(
+          petType: 'fish',
           petName: 'Bubbles',
           petIconPath: 'assets/images/bubbles.jpg',
           location: 'Alitagtag',
@@ -75,6 +80,7 @@ class PetModel {
       
     pets.add(
         PetModel(
+          petType: 'bird',
           petName: 'Coco',
           petIconPath: 'assets/images/coco.jpg',
           location: 'Manila',
@@ -90,6 +96,7 @@ class PetModel {
 
     pets.add(
         PetModel(
+          petType: 'cat',
           petName: 'Luna',
           petIconPath: 'assets/images/luna.jpg',
           location: 'Sto. Tomas',
@@ -105,6 +112,7 @@ class PetModel {
 
     pets.add(
         PetModel(
+          petType: 'dog',
           petName: 'Rocky',
           petIconPath: 'assets/images/rocky.jpg',
           location: 'Pablo Borbon',
