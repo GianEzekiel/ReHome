@@ -3,7 +3,6 @@ import 'package:iconsax/iconsax.dart';
 import 'package:rehome/custom_drawer.dart';
 import 'package:rehome/featured_pets.dart';
 import 'package:rehome/widgets/categories_list.dart';
-import 'package:rehome/widgets/pet_grid.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
