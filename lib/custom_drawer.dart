@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rehome/about_us_screen.dart';
 import 'package:rehome/adoption_guide.dart';
 import 'package:rehome/favorites_screen.dart';
 import 'package:rehome/messages.dart';
@@ -92,13 +93,6 @@ class CustomDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.group),
-            title: const Text('Community Support'),
-            onTap: () {
-              // Handle navigation or action
-            },
-          ),
-          ListTile(
             leading: const Icon(Icons.person),
             title: const Text('Profile'),
             onTap: () {
@@ -111,17 +105,15 @@ class CustomDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Settings'),
-            onTap: () {
-              // Handle navigation or action
-            },
-          ),
-          ListTile(
             leading: const Icon(Icons.info),
             title: const Text('About Us'),
             onTap: () {
-              // Handle navigation or action
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AboutUsScreen(),
+                ),
+                );
             },
           ),
         ],

@@ -103,7 +103,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const Row(
                         children: [
                           Icon(
-                            Icons.person,
+                            Icons.person_outline,
                             size: 30,
                           ),
                           SizedBox(width: 5),
@@ -144,7 +144,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const Row(
                         children: [
                           Icon(
-                            Icons.favorite,
+                            Icons.favorite_border,
                             size: 30,
                           ),
                           SizedBox(width: 8),
@@ -183,7 +183,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const Row(
                         children: [
                           Icon(
-                            Icons.settings,
+                            Icons.settings_outlined,
                             size: 30,
                           ),
                           SizedBox(width: 8),
