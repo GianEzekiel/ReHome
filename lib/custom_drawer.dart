@@ -36,7 +36,7 @@ class CustomDrawer extends StatelessWidget {
                           MainAxisAlignment.center, // Center text vertically
                       children: [
                         Text(
-                          'Username',
+                          'wonyoung',
                           style: TextStyle(
                             fontSize: 20, // Adjust font size for the name
                             fontWeight: FontWeight.bold,
@@ -46,7 +46,7 @@ class CustomDrawer extends StatelessWidget {
                         SizedBox(
                             height: 4), // Space between the name and email
                         Text(
-                          'username@gmail.com',
+                          'wonyoung@gmail.com',
                           style: TextStyle(
                             fontSize: 14, // Adjust font size for the email
                             color:
